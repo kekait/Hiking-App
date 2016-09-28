@@ -1,0 +1,7 @@
+Last modified: 9/28/2016
+
+We want to make a hiking app that tracks the duration of a user's hike. It will display trail conditons,
+the weather, distance. The application should keep track of the user's average walking speed to determine
+how long it will take the user to walk a certain trail. The app will find trails near the user's current
+location. The user should be able to add trail notes such as hazards, and things to generally look out
+for. User maybe able to create their own profile(if time permits).

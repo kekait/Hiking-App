@@ -1,0 +1,12 @@
+A user can find local trails so they can go on a hike there.
+A user can look up weather conditions so they know what to expect.
+A user can track their average speed so the app can determine average hike time.
+A user can track their average speed so they can adjust their speed.
+A user can leave trail notes so others will know what to expect.
+A user can download a trail route so the user can view it offline.
+A user should be able to create a profile so they can share their experiences and view other user profiles.
+A user can see suggested trails based on unique analytics so that they can hike new trails.
+A user can see trail descriptions so they have an idea what to expect.
+A user can navigate around a map so they can see trails.
+A user can view the sunrise/sunset times so they can plan acordingly.
+
