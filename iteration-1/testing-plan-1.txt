@@ -1,0 +1,12 @@
+10/06/18
+
+Approach:
+	Start by downloading Android Studio.
+	Make the app
+
+Testing:
+	Run the emulation on a Android Device
+
+
+Handling of acceptance testing:
+	Create a check-list of how the app should work
