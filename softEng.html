@@ -23,19 +23,22 @@
     <script>
 
       function initMap() {
+        //Camera default position
         var klopp = {lat: 40.855471, lng:  -124.095198};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
           center: klopp
         });
 
-
+        // array of lat, lng points
         var kloppLake = [
                 {lat: 40.855301, lng: -124.098272},
                 {lat: 40.853706, lng: -124.093728},
                 {lat: 40.855408, lng: -124.091768},
                 {lat: 40.857283, lng: -124.096134},
                 {lat: 40.855301, lng: -124.098272}];
+        
+        // kloppLake Poly line object
         var kloppLakeLine = new google.maps.Polyline({
           path: kloppLake,
           geodesic: true,
@@ -43,20 +46,28 @@
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
+        //Adding polyline to map
         kloppLakeLine.setMap(map);
 
-
+        //.getPath returns an array of Lat,Lng points
         var distance1 = kloppLakeLine.getPath();
+        //computeLength takes those points and computes the distance in meters
         distance1 = google.maps.geometry.spherical.computeLength(distance1);
+        //convert meters into miles
         distance1 = distance1 * 0.000621371;
+        
+        //Klopp Lake Marker
         var marker1 = new google.maps.Marker({
           position: klopp,
           map: map,
           title: 'klopp lake'
         });
+        
+  
         var infowindow = new google.maps.InfoWindow({
           content: distance1.toFixed(2) + 'mi'
         });
+        //Info window pops up when marker for kloppLake is clicked
         marker1.addListener('click', function(){
         infowindow.open(map, marker1);
         });
