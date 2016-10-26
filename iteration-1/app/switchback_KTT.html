@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-responsive.css">
+</head>
+
+<body>
+    <h3>SwitchBack Web Demo</h3>
+
+    <div id="nav">
+    <h4 class='inline'>
+        <button data-toggle="collapse" data-target="#menu" class="btn btn-success" onclick="this.innerHTML = (this.innerHTML == '+' ? '-' : '+');">+</button>
+        Find a Route</h4>
+
+
+
+       <div id="menu" class="collapse">
+        <form class="form-horizontal" id="calculate-route" name="calculate-route">
+          <fieldset>
+  
+    <a id="lostman">Lost Man</a>
+	<br />
+	<br />
+	<a id="klopp">Klopp Lake </a>
+<!--
+    <legend>Calculate Your Route</legend>
+
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="start"></label>
+      <div class="col-md-4">
+      <input id="start" name="start" type="text" placeholder="Start" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="destination"></label>
+      <div class="col-md-4">
+      <input id="destination" name="destination" type="text" placeholder="Destination" class="form-control input-md">
+
+      </div>
+    </div> 
+
+    <div class="form-group">
+      <div class="col-md-8">
+        <div class="btn-group" role="group">
+        <input type="button" id="submit" name="submit" class="btn btn-success" onclick="calcRoute();" value="Submit"></input>
+        <button id="reset" name="reset" type="reset" class="btn btn-primary">Reset</button>
+        </div>
+      </div>
+    </div> -->
+
+    </fieldset>
+        </form>
+       </div>
+      </div> 
+
+    <div id="map"></div>
+    <script>
+		
+        function load() {
+            var map = new google.maps.Map(document.getElementById("map"), {
+                center: new google.maps.LatLng(40.853706, -124.093728),
+                zoom: 15,
+                minZoom: 10,
+                maxZoom: 16,
+                scrollwheel: true,
+                navigationControl: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                mapTypeId: 'hybrid'
+            });
+			/*
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var directionsService = new google.maps.DirectionsService();
+
+
+            directionsDisplay.setMap(map);
+		
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                });
+            }
+			*/
+            var myCoord = [
+                new google.maps.LatLng(40.855301, -124.098272),
+                new google.maps.LatLng(40.853706, -124.093728),
+                new google.maps.LatLng(40.855408, -124.091768),
+                new google.maps.LatLng(40.857283, -124.096134),
+                new google.maps.LatLng(40.855301, -124.098272)
+            ];
+
+
+
+            var polys = new google.maps.Polyline({
+                path: myCoord,
+                geodesic: true,
+                strokeColor: 'red',
+                strokeOpacity: .8,
+                strokeWeight: 5
+            });
+
+        var lostMan = [
+                {lat:41.328063, lng:-123.971020},
+                {lat:41.326069, lng:-123.971497},
+                {lat:41.325540, lng:-123.971825},
+                {lat:41.325422, lng:-123.972077},
+                {lat:41.325382, lng:-123.972517},
+                {lat:41.325504, lng:-123.972978},
+                {lat:41.326010, lng: -123.973782},
+                {lat:41.326442, lng:-123.975334},
+                {lat: 41.326273,lng: -123.976117},
+                {lat:41.325830, lng:-123.977132},
+                {lat:41.325836, lng:-123.978217},
+                {lat:41.326156, lng:-123.979142},
+                {lat:41.325735, lng:-123.980282},
+                {lat:41.325142, lng:-123.980627},
+                {lat:41.324456, lng:-123.980826},
+                {lat:41.323920, lng:-123.982984},
+                {lat:41.323226, lng:-123.983856},
+                {lat:41.322831, lng:-123.984852},
+                {lat:41.322316, lng:-123.986057},
+                {lat:41.321989, lng:-123.985766},
+                {lat:41.320925, lng:-123.986003},
+                {lat:41.320940, lng: -123.987686},
+                {lat:41.320656, lng:-123.988431},
+                {lat:41.321365, lng:-123.990458},
+                {lat:41.323378, lng:-123.995978},
+                {lat:41.323660, lng:-123.998185},
+                {lat:41.323382, lng:-123.998422},
+                {lat:41.324470,lng: -124.002327},
+                {lat:41.326032, lng:-124.004699},
+                {lat:41.325990,lng: -124.005263},
+                {lat:41.325312, lng:-124.005730},
+                {lat:41.324150, lng:-124.009615},
+                {lat:41.324751, lng:-124.012676},
+                {lat:41.329373, lng:-124.013674}
+              ];
+          var lostManLine = new google.maps.Polyline({
+            path: lostMan,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+          lostManLine.setMap(map);
+          var lostManDistance = lostManLine.getPath();
+          lostManDistance = google.maps.geometry.spherical.computeLength(lostManDistance);
+          lostManDistance = lostManDistance * 0.000621371;
+
+          var lostManMarker = new google.maps.Marker({
+            position: {lat: 41.327086, lng: -124.015508},
+            map: map,
+            title: 'Lost Man Trail'
+          });
+          var lostManInfo = new google.maps.InfoWindow({
+            content: lostManDistance.toFixed(2) + 'mi'
+          });
+
+          lostManMarker.addListener('click', function(){
+            lostManInfo.open(map, lostManMarker);
+          });
+
+
+            var service = new google.maps.DirectionsService(),
+                polys, snap_path = [];
+            polys.setMap(map);
+
+            for (j = 0; j < myCoord.length - 1; j++) {
+                service.route({
+                    origin: myCoord[j],
+                    destination: myCoord[j + 1],
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                }, function(result, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        snap_path = snap_path.concat(result.routes[0].overview_path);
+                        //polys.setPath(snap_path);
+                    }
+                });
+            }
+			var tester = document.getElementById("lostman");
+			tester.addEventListener('click',function(){
+				map.setCenter({lat: 41.327086, lng: -124.015508});});
+				
+			var tester = document.getElementById("klopp");
+			tester.addEventListener('click',function(){
+				map.setCenter({lat: 40.853706, lng:-124.093728});});
+            var infoWindow = new google.maps.InfoWindow;
+            // Change this depending on the name of your PHP file
+
+        }
+
+        function doNothing() {}
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDizdhb4UZeCUTnjxYnxNt_TS62IFj2SGg&callback=load&libraries=geometry">
+    </script>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap.min.js"></script>
+
+</body>
+
+</html>
