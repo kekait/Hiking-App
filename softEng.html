@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var klopp = {lat: 40.855471, lng:  -124.095198};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: klopp
+        });
+
+
+        var kloppLake = [
+                {lat: 40.855301, lng: -124.098272},
+                {lat: 40.853706, lng: -124.093728},
+                {lat: 40.855408, lng: -124.091768},
+                {lat: 40.857283, lng: -124.096134},
+                {lat: 40.855301, lng: -124.098272}];
+        var kloppLakeLine = new google.maps.Polyline({
+          path: kloppLake,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        kloppLakeLine.setMap(map);
+
+
+        var distance1 = kloppLakeLine.getPath();
+        distance1 = google.maps.geometry.spherical.computeLength(distance1);
+        distance1 = distance1 * 0.000621371;
+        var marker1 = new google.maps.Marker({
+          position: klopp,
+          map: map,
+          title: 'klopp lake'
+        });
+        var infowindow = new google.maps.InfoWindow({
+          content: distance1.toFixed(2) + 'mi'
+        });
+        marker1.addListener('click', function(){
+        infowindow.open(map, marker1);
+        });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?
+
+key=AIzaSyBzfO_WwvgnAP0LXlUIfROEvY2Vqh_i4jY&libraries=geometry&callback=initMap"
+    async defer></script>
+  </body>
+</html>
