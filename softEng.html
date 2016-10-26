@@ -23,22 +23,19 @@
     <script>
 
       function initMap() {
-        //Camera default position
         var klopp = {lat: 40.855471, lng:  -124.095198};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: klopp
+          zoom: 10,
+          center: {lat: 40.933481, lng: -124.088720}
         });
 
-        // array of lat, lng points
+
         var kloppLake = [
                 {lat: 40.855301, lng: -124.098272},
                 {lat: 40.853706, lng: -124.093728},
                 {lat: 40.855408, lng: -124.091768},
                 {lat: 40.857283, lng: -124.096134},
                 {lat: 40.855301, lng: -124.098272}];
-        
-        // kloppLake Poly line object
         var kloppLakeLine = new google.maps.Polyline({
           path: kloppLake,
           geodesic: true,
@@ -46,31 +43,83 @@
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
-        //Adding polyline to map
         kloppLakeLine.setMap(map);
 
-        //.getPath returns an array of Lat,Lng points
         var distance1 = kloppLakeLine.getPath();
-        //computeLength takes those points and computes the distance in meters
         distance1 = google.maps.geometry.spherical.computeLength(distance1);
-        //convert meters into miles
         distance1 = distance1 * 0.000621371;
-        
-        //Klopp Lake Marker
         var marker1 = new google.maps.Marker({
           position: klopp,
           map: map,
           title: 'klopp lake'
         });
-        
-  
         var infowindow = new google.maps.InfoWindow({
           content: distance1.toFixed(2) + 'mi'
         });
-        //Info window pops up when marker for kloppLake is clicked
         marker1.addListener('click', function(){
         infowindow.open(map, marker1);
         });
+
+        var lostMan = [
+                {lat:41.328063, lng:-123.971020},
+                {lat:41.326069, lng:-123.971497},
+                {lat:41.325540, lng:-123.971825},
+                {lat:41.325422, lng:-123.972077},
+                {lat:41.325382, lng:-123.972517},
+                {lat:41.325504, lng:-123.972978},
+                {lat:41.326010, lng: -123.973782},
+                {lat:41.326442, lng:-123.975334},
+                {lat: 41.326273,lng: -123.976117},
+                {lat:41.325830, lng:-123.977132},
+                {lat:41.325836, lng:-123.978217},
+                {lat:41.326156, lng:-123.979142},
+                {lat:41.325735, lng:-123.980282},
+                {lat:41.325142, lng:-123.980627},
+                {lat:41.324456, lng:-123.980826},
+                {lat:41.323920, lng:-123.982984},
+                {lat:41.323226, lng:-123.983856},
+                {lat:41.322831, lng:-123.984852},
+                {lat:41.322316, lng:-123.986057},
+                {lat:41.321989, lng:-123.985766},
+                {lat:41.320925, lng:-123.986003},
+                {lat:41.320940, lng: -123.987686},
+                {lat:41.320656, lng:-123.988431},
+                {lat:41.321365, lng:-123.990458},
+                {lat:41.323378, lng:-123.995978},
+                {lat:41.323660, lng:-123.998185},
+                {lat:41.323382, lng:-123.998422},
+                {lat:41.324470,lng: -124.002327},
+                {lat:41.326032, lng:-124.004699},
+                {lat:41.325990,lng: -124.005263},
+                {lat:41.325312, lng:-124.005730},
+                {lat:41.324150, lng:-124.009615},
+                {lat:41.324751, lng:-124.012676},
+                {lat:41.329373, lng:-124.013674}
+              ];
+          var lostManLine = new google.maps.Polyline({
+            path: lostMan,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+          lostManLine.setMap(map);
+          var lostManDistance = lostManLine.getPath();
+          lostManDistance = google.maps.geometry.spherical.computeLength(lostManDistance);
+          lostManDistance = lostManDistance * 0.000621371;
+
+          var lostManMarker = new google.maps.Marker({
+            position: {lat: 41.327086, lng: -124.015508},
+            map: map,
+            title: 'Lost Man Trail'
+          });
+          var lostManInfo = new google.maps.InfoWindow({
+            content: lostManDistance.toFixed(2) + 'mi'
+          });
+
+          lostManMarker.addListener('click', function(){
+            lostManInfo.open(map, lostManMarker);
+          });
     }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?
