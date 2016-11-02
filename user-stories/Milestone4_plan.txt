@@ -1,0 +1,22 @@
+Completed
+
+J - 3 hours - A user can navigate around a map so they can see trails.					
+A - 4 hours - A user can find local trails so they can go on a hike there.				(Kind of)
+I - 2 hours - A user can see trail descriptions so they have an idea what to expect.	(Bare Bones)
+
+
+To implement for iteration 2
+
+B - 6 hours - A user can look up weather conditions so they know what to expect.
+K - 2 hours - A user can view the sunrise/sunset times so they can plan acordingly.
+F - 3 hours - A user can download a trail route so the user can view it offline. (maybe)
+
+
+Still To implement
+
+C - 5 hours - A user can track their average speed so the app can determine average hike time.
+D - 2 hours - A user can track their average speed so they can adjust their speed.
+E - 3 hours - A user can leave trail notes so others will know what to expect.
+F - 3 hours - A user can download a trail route so the user can view it offline.
+G - 7 hours - A user should be able to create a profile so they can share their experiences and view other user profiles.
+H - 6 hours - A user can see suggested trails based on unique analytics so that they can hike new trails.

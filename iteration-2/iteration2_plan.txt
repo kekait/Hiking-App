@@ -1,0 +1,10 @@
+Iteration 2 plan
+
+These are the user stories we'd like to implement by our due date:
+
+B - 6 hours - A user can look up weather conditions so they know what to expect.
+K - 2 hours - A user can view the sunrise/sunset times so they can plan acordingly.
+F - 3 hours - A user can download a trail route so the user can view it offline. (maybe)
+
+Our iteration 2 due date has been decied on November 18th 2016
+ 
