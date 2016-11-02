@@ -10,7 +10,6 @@ function load() {
 		center: new google.maps.LatLng(40.875758, -124.078604),
 		zoom: 15,
 		minZoom: 10,
-		maxZoom: 15,
 		scrollwheel: true,
 		navigationControl: false,
 		mapTypeControl: false,
