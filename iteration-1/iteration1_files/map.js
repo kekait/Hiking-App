@@ -47,7 +47,7 @@ function load() {
 		strokeColor: '#FF0000',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
-	})
+	});
 
 
 	//sets polyline on map and calculates distance
@@ -104,7 +104,7 @@ function load() {
 	var hikshariContString = '<h2>Hikshari Trail</h2>'+
 							hikshariDistance.toFixed(2) + 'mi';
 	var redwoodParkContString = '<h2>Redwood Park</h2>'+
-							redwoodParkDistance.toFiexed(2) + 'mi';
+							redwoodParkDistance.toFixed(2) + 'mi';
 
 
 	//creates infowindow when marker is clicked for each trail
@@ -150,7 +150,7 @@ function load() {
 	tester.addEventListener('click',function(){
 		map.setCenter(hikshariStart);});
 
-	var tester = document.getElementById("redwoodpark");
+	var tester = document.getElementById("redwoodPark");
 	tester.addEventListener('click',function(){
 		map.setCenter(redwoodParkStart);});
 

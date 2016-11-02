@@ -122,7 +122,7 @@ var hikshari = [
 	{lat:40.775640, lng:-124.194150}
 ];
 
-var redwoodParkStart = {lat:40.871340, lng:-124.076867}
+var redwoodParkStart = {lat:40.871340, lng:-124.076867};
 var redwoodPark = [
 	{lat:40.871340, lng:-124.076867},
 	{lat:40.870764, lng:-124.077114},
