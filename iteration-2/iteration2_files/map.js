@@ -102,7 +102,7 @@ function load() {
 							lostManDistance.toFixed(2) + 'mi';
 	var hikshariContString = '<h2>Hikshari Trail</h2>'+
 							hikshariDistance.toFixed(2) + 'mi';
-	var redwoodParkContString = '<h2>Redwood Park</h2>'+
+	var redwoodParkContString = '<h2>Redwood Park</h2>' +
 							redwoodParkDistance.toFixed(2) + 'mi';
 
 
@@ -135,6 +135,7 @@ function load() {
 	redwoodParkMarker.addListener('click', function(){
 		redwoodParkInfo.open(map, redwoodParkMarker);
 	});
+
 
 	//On click listeners for buttons in the bootstrap menu
 	var tester = document.getElementById("lostman");

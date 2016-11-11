@@ -16,15 +16,18 @@
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap.min.js"></script>
+
 </head>
 
 <body>
-    <h3>SwitchBack Web Demo</h3>
+  <div id="title">
+    <h3 id="header">Switchback Trail Finder</h3>
+  </div>
 
     <div id="nav">
     <h4 class='inline'>
-        <button data-toggle="collapse" data-target="#menu" class="btn btn-success" onclick="this.innerHTML = (this.innerHTML == '+' ? '-' : '+');">+</button>
-        Available Trails</h4>
+        <button type="button" data-toggle="collapse" data-target="#menu" onclick="this.innerHTML = (this.innerHTML == '+  Trails' ? '-  Trails' : '+  Trails');">+  Trails</button>
+    </h4>
 
 
 		<!--Block for buttons inside the bootstrap menu -->
@@ -32,11 +35,11 @@
         <form class="form-horizontal" id="calculate-route" name="calculate-route">
 			<fieldset>
 				<button id="lostman" type="button">Lost Man Trail</button>
-				<br />
+				<br/>
 				<button id="klopp" type="button">Klopp Lake</button>
-				<br />
+				<br/>
 				<button id="hikshari" type="button">Hikshari Trail</button>
-        <br />
+        <br/>
         <button id="redwoodPark" type="button">Redwood Park</button>
 
 			</fieldset>
