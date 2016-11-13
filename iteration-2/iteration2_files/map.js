@@ -93,19 +93,23 @@ function load() {
 		title: 'Redwood Park'
 	});
 
-
-
-	//Descriptions for each trail
-	var kloppContString = 	'<h2>Klopp Lake</h2>'+
-							kloppDistance.toFixed(2) + 'mi';
-	var lostManContString = '<h2>Lost Man Trail</h2>'+
-							lostManDistance.toFixed(2) + 'mi';
-	var hikshariContString = '<h2>Hikshari Trail</h2>'+
-							hikshariDistance.toFixed(2) + 'mi';
-	var redwoodParkContString = '<h2>Redwood Park</h2>' +
-							redwoodParkDistance.toFixed(2) + 'mi';
-
-
+	
+	//Find the sunrise/sunset based on lat/long of trail start
+	var lmc_ar = sunrise_set(lostManStart.lat,lostManStart.lng);
+	var kl_ar = sunrise_set(kloppStart.lat,kloppStart.lng);
+	var ht_ar = sunrise_set(hikshariStart.lat,hikshariStart.lng);
+	var rp_ar = sunrise_set(redwoodParkStart.lat,redwoodParkStart.lng);
+	
+	//String information for trail infowindow
+	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
+						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>';
+	var lostManContString =  '<h2>Lost Man Trail</h2>'+ '<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
+						+ '<p>Sunrise: ' + lmc_ar[0] + '</p>' + '<p>Sunset: ' + lmc_ar[1] + '</p>';
+	var hikshariContString = '<h2>Hikshari Trail</h2>'+ '<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
+						+ '<p>Sunrise: ' + ht_ar[0] + '</p>' + '<p>Sunset: ' + ht_ar[1] + '</p>';
+	var redwoodParkContString = '<h2>Redwood Park</h2>' + '<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
+						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>';
+	
 	//creates infowindow when marker is clicked for each trail
 	var kloppInfo = new google.maps.InfoWindow({
 		content: kloppContString
@@ -156,4 +160,6 @@ function load() {
 
 	var infoWindow = new google.maps.InfoWindow;
 	// Change this depending on the name of your PHP file
-}
+	
+
+};
