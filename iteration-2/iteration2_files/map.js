@@ -160,6 +160,14 @@ function load() {
 
 	var infoWindow = new google.maps.InfoWindow;
 	// Change this depending on the name of your PHP file
-	
+
+        // sets weather layer onto map
+        var weatherLayer = new google.maps.weather.WeatherLayer({
+	    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+	});
+        weatherLayer.setMap(map);
+     
+        var cloudLayer = new google.maps.weather.CloudLayer();
+        cloudLayer.setMap(map);
 
 };
