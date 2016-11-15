@@ -188,7 +188,7 @@ var redwoodPark = [
 	{lat:40.869190, lng:-124.071891}
 ];
 
-var brackishPondStart = {lat:40.862157, lng:-124.094747};
+var brackishPondStart = {lat:40.861112, lng:-124.096064};
 var brackishPond = [
 	{lat:40.861112, lng:-124.096064},
 	{lat:40.861798, lng:-124.096066},
