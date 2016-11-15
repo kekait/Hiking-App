@@ -105,9 +105,9 @@ function load() {
 		title: 'Redwood Park'
 	});
 	var brackishPondMarker = new google.maps.Marker({
-	position: brackishPondStart,
-	map: map,
-	title: 'Brackish Pond'
+		position: brackishPondStart,
+		map: map,
+		title: 'Brackish Pond'
 });
 
 
@@ -116,20 +116,21 @@ function load() {
 	var kl_ar = sunrise_set(kloppStart.lat,kloppStart.lng);
 	var ht_ar = sunrise_set(hikshariStart.lat,hikshariStart.lng);
 	var rp_ar = sunrise_set(redwoodParkStart.lat,redwoodParkStart.lng);
-	var bp_ar = sunrise_set(brackishPondStart.lat,brackishPond.lng);
+	var bp_ar = sunrise_set(brackishPondStart.lat,brackishPondStart.lng);
 
 
-        // Creates variables for weather conditions and is currently pulling from only the Arcata API on wunderground.com
-        // Will need to create different variables for areas other than arcata and pull the .json file from wunderground.com for each area... couldn't do it based on geolocation
-        // If someoen can figure out how to do it via geolocation that would be awesome
-        var weather = new XMLHttpRequest();
-        weather.open("GET", "http://api.wunderground.com/api/e2d25049016cd0f7/conditions/q/CA/Arcata.json", false);
-        weather.send(null);
-        var r = JSON.parse(weather.response);
-        var weather = r.current_observation.display_location.full;
-        var temp = r.current_observation.temperature_string;
-        var wind = r.current_observation.wind_string;    
+	// Creates variables for weather conditions and is currently pulling from only the Arcata API on wunderground.com
+	// Will need to create different variables for areas other than arcata and pull the .json file from wunderground.com for each area... couldn't do it based on geolocation
+	// If someoen can figure out how to do it via geolocation that would be awesome
+	var weather = new XMLHttpRequest();
+	weather.open("GET", "http://api.wunderground.com/api/e2d25049016cd0f7/conditions/q/CA/Arcata.json", false);
+	weather.send(null);
+	var r = JSON.parse(weather.response);
+	var weather = r.current_observation.display_location.full;
+	var temp = r.current_observation.temperature_string;
+	var wind = r.current_observation.wind_string;    
 
+	
 	//String information for trail infowindow
 	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>'

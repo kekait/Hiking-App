@@ -16,7 +16,7 @@
 		var one_day = 1000*60*60*24;
 		var epoch_ms = 946713600000;
 		var epoch_jd = 2451545;
-		var error = 10800000;
+		var error = 12600000;
 		
 		//Julian date
 		var date = new Date();
