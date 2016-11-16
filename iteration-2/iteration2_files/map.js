@@ -54,6 +54,13 @@ function load() {
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
+	var strawberryRockLine = new google.maps.Polyline({
+		path: strawberryRock,
+		geodesic: true,
+		strokeColor: '#FF0000',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	});
 
 
 	//sets polyline on map and calculates distance
@@ -82,6 +89,11 @@ function load() {
 	brackishPondDistance = google.maps.geometry.spherical.computeLength(brackishPondDistance);
 	brackishPondDistance = brackishPondDistance * 0.000621371;
 
+	strawberryRockLine.setMap(map);
+	var strawberryRockDistance = strawberryRockLine.getPath();
+	strawberryRockDistance = google.maps.geometry.spherical.computeLength(strawberryRockDistance);
+	strawberryRockDistance = strawberryRockDistance * 0.000621371;
+
 
 	//creates marker on map for each trail
 	var kloppMarker = new google.maps.Marker({
@@ -108,7 +120,12 @@ function load() {
 		position: brackishPondStart,
 		map: map,
 		title: 'Brackish Pond'
-});
+	});
+	var strawberryRockMarker = new google.maps.Marker({
+		position: strawberryRockStart,
+		map: map,
+		title: 'Strawberry Rock'
+	});
 
 
 	//Find the sunrise/sunset based on lat/long of trail start
@@ -117,6 +134,7 @@ function load() {
 	var ht_ar = sunrise_set(hikshariStart.lat,hikshariStart.lng);
 	var rp_ar = sunrise_set(redwoodParkStart.lat,redwoodParkStart.lng);
 	var bp_ar = sunrise_set(brackishPondStart.lat,brackishPondStart.lng);
+	var sr_ar = sunrise_set(strawberryRockStart.lat,strawberryRockStart.lng);
 
 
 	// Creates variables for weather conditions and is currently pulling from only the Arcata API on wunderground.com
@@ -128,9 +146,9 @@ function load() {
 	var r = JSON.parse(weather.response);
 	var weather = r.current_observation.display_location.full;
 	var temp = r.current_observation.temperature_string;
-	var wind = r.current_observation.wind_string;    
+	var wind = r.current_observation.wind_string;
 
-	
+
 	//String information for trail infowindow
 	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>'
@@ -145,24 +163,30 @@ function load() {
 						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
 	var brackishPondContString = '<h2>Brackish Pond</h2>' + '<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>' 
+						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+	var strawberryRockString = '<h2>Strawberry Rock</h2>' + '<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
+						+ '<p>Sunrise: ' + sr_ar[0] + '</p>' + '<p>Sunset: ' + sr_ar[1] + '</p>'
+																					+ '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
 
 	//creates infowindow when marker is clicked for each trail
 	var kloppInfo = new google.maps.InfoWindow({
 		content: kloppContString
 	});
-		var lostManInfo = new google.maps.InfoWindow({
+	var lostManInfo = new google.maps.InfoWindow({
 		content: lostManContString
 	});
-		var hikshariInfo = new google.maps.InfoWindow({
+	var hikshariInfo = new google.maps.InfoWindow({
 		content: hikshariContString
 	});
-		var redwoodParkInfo = new google.maps.InfoWindow({
+	var redwoodParkInfo = new google.maps.InfoWindow({
 		content: redwoodParkContString
 	});
-		var brackishPondInfo = new google.maps.InfoWindow({
+	var brackishPondInfo = new google.maps.InfoWindow({
 		content: brackishPondContString
+	});
+	var strawberryRockInfo = new google.maps.InfoWindow({
+		content: strawberryRockString
 	});
 
 
@@ -182,6 +206,9 @@ function load() {
 	});
 	brackishPondMarker.addListener('click', function(){
 		brackishPondInfo.open(map, brackishPondMarker);
+	});
+	strawberryRockMarker.addListener('click', function(){
+		strawberryRockInfo.open(map, strawberryRockMarker);
 	});
 
 
@@ -205,6 +232,10 @@ function load() {
 	var tester = document.getElementById("brackishPond");
 	tester.addEventListener('click',function(){
 		map.setCenter(brackishPondStart);});
+
+	var tester = document.getElementById("strawberryRock");
+	tester.addEventListener('click',function(){
+		map.setCenter(strawberryRockStart);});
 
 	var infoWindow = new google.maps.InfoWindow;
 
