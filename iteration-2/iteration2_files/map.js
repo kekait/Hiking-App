@@ -54,13 +54,6 @@ function load() {
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
-	var strawberryRockLine = new google.maps.Polyline({
-		path: strawberryRock,
-		geodesic: true,
-		strokeColor: '#FF0000',
-		strokeOpacity: 1.0,
-		strokeWeight: 2
-	});
 
 
 	//sets polyline on map and calculates distance
@@ -89,11 +82,6 @@ function load() {
 	brackishPondDistance = google.maps.geometry.spherical.computeLength(brackishPondDistance);
 	brackishPondDistance = brackishPondDistance * 0.000621371;
 
-	strawberryRockLine.setMap(map);
-	var strawberryRockDistance = strawberryRockLine.getPath();
-	strawberryRockDistance = google.maps.geometry.spherical.computeLength(strawberryRockDistance);
-	strawberryRockDistance = strawberryRockDistance * 0.000621371;
-
 
 	//creates marker on map for each trail
 	var kloppMarker = new google.maps.Marker({
@@ -106,12 +94,12 @@ function load() {
 		map: map,
 		title: 'Lost Man Trail'
 	});
-		var hikshariMarker = new google.maps.Marker({
+	var hikshariMarker = new google.maps.Marker({
 		position: hikshariStart,
 		map: map,
 		title: 'Hikshari Trail'
 	});
-		var redwoodParkMarker = new google.maps.Marker({
+	var redwoodParkMarker = new google.maps.Marker({
 		position: redwoodParkStart,
 		map: map,
 		title: 'Redwood Park'
@@ -120,54 +108,39 @@ function load() {
 		position: brackishPondStart,
 		map: map,
 		title: 'Brackish Pond'
-	});
-	var strawberryRockMarker = new google.maps.Marker({
-		position: strawberryRockStart,
-		map: map,
-		title: 'Strawberry Rock'
-	});
+});
 
-
+	
 	//Find the sunrise/sunset based on lat/long of trail start
 	var lmc_ar = sunrise_set(lostManStart.lat,lostManStart.lng);
 	var kl_ar = sunrise_set(kloppStart.lat,kloppStart.lng);
 	var ht_ar = sunrise_set(hikshariStart.lat,hikshariStart.lng);
 	var rp_ar = sunrise_set(redwoodParkStart.lat,redwoodParkStart.lng);
 	var bp_ar = sunrise_set(brackishPondStart.lat,brackishPondStart.lng);
-	var sr_ar = sunrise_set(strawberryRockStart.lat,strawberryRockStart.lng);
+	
+	
+	
 
 
-	// Creates variables for weather conditions and is currently pulling from only the Arcata API on wunderground.com
-	// Will need to create different variables for areas other than arcata and pull the .json file from wunderground.com for each area... couldn't do it based on geolocation
-	// If someoen can figure out how to do it via geolocation that would be awesome
-	var weather = new XMLHttpRequest();
-	weather.open("GET", "http://api.wunderground.com/api/e2d25049016cd0f7/conditions/q/CA/Arcata.json", false);
-	weather.send(null);
-	var r = JSON.parse(weather.response);
-	var weather = r.current_observation.display_location.full;
-	var temp = r.current_observation.temperature_string;
-	var wind = r.current_observation.wind_string;
 
+
+	
+	//var test1 = loadWeather(30.2676,-97.74298, 2357536);
+	
 
 	//String information for trail infowindow
 	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>'
-	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>' +
+						'<p id=weather></p>';
 	var lostManContString =  '<h2>Lost Man Trail</h2>'+ '<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + lmc_ar[0] + '</p>' + '<p>Sunset: ' + lmc_ar[1] + '</p>'
-	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+						+ '<p>Sunrise: ' + lmc_ar[0] + '</p>' + '<p>Sunset: ' + lmc_ar[1] + '</p>';
 	var hikshariContString = '<h2>Hikshari Trail</h2>'+ '<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + ht_ar[0] + '</p>' + '<p>Sunset: ' + ht_ar[1] + '</p>'
-	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+						+ '<p>Sunrise: ' + ht_ar[0] + '</p>' + '<p>Sunset: ' + ht_ar[1] + '</p>';
 	var redwoodParkContString = '<h2>Redwood Park</h2>' + '<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>'
-	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>';
 	var brackishPondContString = '<h2>Brackish Pond</h2>' + '<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>'
-	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var strawberryRockString = '<h2>Strawberry Rock</h2>' + '<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
-						+ '<p>Sunrise: ' + sr_ar[0] + '</p>' + '<p>Sunset: ' + sr_ar[1] + '</p>'
-																					+ '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
+						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>';
+
 
 	//creates infowindow when marker is clicked for each trail
 	var kloppInfo = new google.maps.InfoWindow({
@@ -185,9 +158,6 @@ function load() {
 	var brackishPondInfo = new google.maps.InfoWindow({
 		content: brackishPondContString
 	});
-	var strawberryRockInfo = new google.maps.InfoWindow({
-		content: strawberryRockString
-	});
 
 
 	//creates on click listener for the infowindow for each trail marker
@@ -197,7 +167,6 @@ function load() {
 	lostManMarker.addListener('click', function(){
 		lostManInfo.open(map, lostManMarker);
 	});
-
 	hikshariMarker.addListener('click', function(){
 		hikshariInfo.open(map, hikshariMarker);
 	});
@@ -206,9 +175,6 @@ function load() {
 	});
 	brackishPondMarker.addListener('click', function(){
 		brackishPondInfo.open(map, brackishPondMarker);
-	});
-	strawberryRockMarker.addListener('click', function(){
-		strawberryRockInfo.open(map, strawberryRockMarker);
 	});
 
 
@@ -232,10 +198,6 @@ function load() {
 	var tester = document.getElementById("brackishPond");
 	tester.addEventListener('click',function(){
 		map.setCenter(brackishPondStart);});
-
-	var tester = document.getElementById("strawberryRock");
-	tester.addEventListener('click',function(){
-		map.setCenter(strawberryRockStart);});
 
 	var infoWindow = new google.maps.InfoWindow;
 

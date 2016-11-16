@@ -16,12 +16,13 @@
 		var one_day = 1000*60*60*24;
 		var epoch_ms = 946713600000;
 		var epoch_jd = 2451545;
-		var error = 12600000;
+		var error_correct = 12600000;
 		
 		//Julian date
 		var date = new Date();
 		var date_ms = date.getTime();
-		var jDate = Math.round( (date_ms - epoch_ms)/one_day + epoch_jd );
+		var jDate =(date_ms - epoch_ms)/one_day + epoch_jd;
+		//var jDate = Math.round( (date_ms - epoch_ms)/one_day + epoch_jd );
 
 		//Julian Cycle
 		var jCycle = Math.round( (jDate  - epoch_jd - 0.0009) - (long/360) );
@@ -45,8 +46,8 @@
 		var jRise = solarNoon - (jSet - solarNoon);
 		
 		//Standardized date conversion including error correction for sunrise and sunset
-		var rise = new Date( ((jRise - epoch_jd) * one_day) + epoch_ms - error);
-		var set = new Date( ((jSet - epoch_jd) * one_day) + epoch_ms - error);
+		var rise = new Date( ((jRise - epoch_jd) * one_day) + epoch_ms - error_correct);
+		var set = new Date( ((jSet - epoch_jd) * one_day) + epoch_ms - error_correct);
 		
 		return [rise,set];
 	};
