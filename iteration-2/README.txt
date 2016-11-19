@@ -7,7 +7,7 @@ To set up in own public_domain
    
    2)create a public_html subdirectory (if it does not exist already)
    
-   3)make sure these files are included:	(They can be found in /Team_ISAK/iteration-1/iteration1_files)
+   3)make sure these files are included:	(They can be found in /Team_ISAK/iteration-2/iteration2_files)
    	  
 		i)	bootstrap.css
 					css file for making our bootstrap menu look pretty.
