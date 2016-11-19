@@ -1,0 +1,21 @@
+For acceptance testing we created a checklist of things that needed to happen for our first iteration to be a success
+
+The first thing to dow as to go to the website link. When there the list is as follows
+
+1)The user is greated with a google map view of somewhere local (In this case it was of arcata)
+2)There should either be a search bar or a menu within plain site for the user
+3)The user should be able to interect with the search bar or menu
+4)The user should then be able to view a trail on the map
+5)The user should be able to pull up information on trail easily
+
+Testing went as follows
+1)Success, but would like a view of where user was
+2)Menu bar with 5 available trails. Success
+3)user was able to interact easily with menu. Success
+4)Success, all 5 trails worked
+5)Could pull up info. 
+6) Distance, weather conditions and sunrise/set all work
+
+We were able to provide more unit testing this time with a .js file that we provided called "riseSetUnitTesting" 
+
+This was used to test the javascript for the sunrise and sunset
