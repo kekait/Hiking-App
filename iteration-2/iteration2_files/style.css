@@ -43,6 +43,23 @@ body, html {
   float: left;
   background-color: #4CAF50;
 }
+#help
+{
+  width: auto;
+  border-radius: 7px;
+  z-index: 100;
+  position: absolute;
+  padding: 8px 15px 0px 15px;
+  margin: 20px;
+  margin-top: 1.1em;
+  right: 7em;
+  float: left;
+  background-color: #4CAF50;
+}
+p
+{
+  color: #FFFFFF;
+}
 #map
 {
   width: 100%;
@@ -69,4 +86,8 @@ button[type="button"]:hover
   background-color: white;
   color: #4CAF50;
   border-radius: 7px;
+}
+#helper
+{
+  margin-left: 10em;
 }
