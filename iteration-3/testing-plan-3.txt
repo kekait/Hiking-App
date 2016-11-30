@@ -1,0 +1,10 @@
+For acceptance testing we created a checklist of things that needed to happen for our thrid iteration to be a success
+
+The first thing to do was to go to the website link. When there the list is as follows
+
+1)The user is greated with a google map view of somewhere local (In this case it was of arcata).
+2)There is a trails buttong and a help button visable on the top green bar.
+3)The user can push the trails or help button to see a drop down.
+4)The user can select a trail from the trails button and the map will find the selected trail.
+5)The user can select the pin to see specific information about their selected trail.
+6)The user can search for anything in the search bar and it will find it on the map.
