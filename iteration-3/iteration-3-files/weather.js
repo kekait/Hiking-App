@@ -1,16 +1,18 @@
 
-	// Creates variables for weather conditions and is currently pulling from only the Arcata API on wunderground.com
-	// Will need to create different variables for areas other than arcata and pull the .json file from wunderground.com for each area... couldn't do it based on geolocation
-	// If someoen can figure out how to do it via geolocation that would be awesome
+/*
+Other stuff that may be added
+
+      var sunrise = weather.sunrise;
+      sunrise = sunrise.split(":");
+      if(sunrise[1].length == 4){
+          sunrise = sunrise[0] + ":0" +sunrise[1];
+	  html+= '<li> Sunrise: '+sunrise+'</li>';
+      }
+      else{
+      html += '<li> Sunrise: '+weather.sunrise+'</li>';
+      }
 	
-	/*
-	var weather = new XMLHttpRequest();
-	weather.open("GET", "http://api.wunderground.com/api/e2d25049016cd0f7/conditions/q/CA/Arcata.json", false);
-	weather.send(null);
-	var r = JSON.parse(weather.response);
-	var weather = r.current_observation.display_location.full;
-	var temp = r.current_observation.temperature_string;
-	var wind = r.current_observation.wind_string;    
+
 */
 	
 // Docs at http://simpleweatherjs.com
@@ -42,17 +44,9 @@ function loadWeather(location, woeid) {
     success: function(weather) {
       html = '<h2><img src="'+ weather.thumbnail+'"> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
       html += '<ul style="column-count:2" style="column-gap:1em"><li>'+weather.city+', '+weather.region+'</li>';
-      var sunrise = weather.sunrise;
-      sunrise = sunrise.split(":");
-      if(sunrise[1].length == 4){
-          sunrise = sunrise[0] + ":0" +sunrise[1];
-	  html+= '<li> Sunrise: '+sunrise+'</li>';
-      }
-      else{
-      html += '<li> Sunrise: '+weather.sunrise+'</li>';
-      }
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';  
+  
+      html += '<li class="currently">'+weather.currently+'</li>'; 
+
       
       $("#weather").html(html);
     },

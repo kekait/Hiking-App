@@ -25,7 +25,7 @@
 <body>
 
 <h1> Connecting PHP to Oracle </h1>
-<h2> Kekai Tanaka </h2>
+
 <?php
    // do you need to ask for username and password?
 
@@ -36,7 +36,7 @@
         ?>
   
         <form method="post" 
-              action="http://nrs-projects.humboldt.edu/~ktt107/Team_ISAK/iteration-2/iteration2_files/switchback.php">
+              action="switchback.php">
         <fieldset>
             <legend> Please enter Oracle username/password: </legend>
 

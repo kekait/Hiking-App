@@ -152,9 +152,7 @@ function load() {
 						+ '<p>Sunrise: ' + sr_ar[0] + '</p>' + '<p>Sunset: ' + sr_ar[1] + '</p>';
 
 						
-	//DummyWindow so only one infowindow will be open at any time
-	var lastWindow = new google.maps.InfoWindow({
-	});					
+			
 	//creates infowindow when marker is clicked for each trail
 	var kloppInfo = new google.maps.InfoWindow({
 		content: kloppContString
@@ -174,6 +172,9 @@ function load() {
 	var strawberryRockInfo = new google.maps.InfoWindow({
 		content: strawberryRockString
 	});
+	//DummyWindow so only one infowindow will be open at any time
+	var lastWindow = new google.maps.InfoWindow({
+	});		
 
 
 	//creates on click listener for the infowindow for each trail marker
