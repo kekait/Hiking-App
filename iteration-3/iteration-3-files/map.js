@@ -14,7 +14,8 @@ function load() {
 		navigationControl: false,
 		mapTypeControl: false,
 		scaleControl: false,
-		mapTypeId: 'hybrid'
+		mapTypeId: 'hybrid',
+	        streetViewControl: false
 	});
 
 
