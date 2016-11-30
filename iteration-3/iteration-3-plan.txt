@@ -1,0 +1,8 @@
+Iteration 3 plan
+
+These are the user stories we'd like to implement by our due date:
+
+E - 3 hours - A user can leave trail notes so others will know what to expect.
+F - 3 hours - A user can download a trail route so the user can view it offline.
+
+Our iteration 2 due date has been decided on December 2nd 2016
