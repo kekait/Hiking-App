@@ -1,0 +1,2 @@
+E - 3 hours - A user can leave trail notes so others will know what to expect.
+F - 3 hours - A user can download a trail route so the user can view it offline.
