@@ -21,18 +21,20 @@
 
 
 	<!--script for connecting with google maps service and access to librariesraries -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDizdhb4UZeCUTnjxYnxNt_TS62IFj2SGg&callback=load&libraries=geometry,weather"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDizdhb4UZeCUTnjxYnxNt_TS62IFj2SGg&callback=load&libraries=geometry,weather,places"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap.min.js"></script>
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js" >
         </script>
-
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 </head>
 
 <body>
   <div id="title">
     <h3 id="header">Switchback Trail Finder</h3>
+    <input id="pac-input" class="controls" type="text" placeholder="Search
+ Box">
   </div>
 
     <div id="nav">
