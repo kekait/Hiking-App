@@ -1,0 +1,93 @@
+<?php
+    session_start();
+    $_SESSION['username'] = strip_tags($_POST['username']);
+    $_SESSION['password'] = $_POST['password'];
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--Block for referencing css files -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-responsive.css">
+
+	<!--Block for referencing js script files -->
+	<script type="text/javascript" src="trail_variables.js"></script>
+	<script type="text/javascript" src="trailNotes.js"></script>
+	<script type="text/javascript" src="weather.js"></script>
+	<script type="text/javascript" src="map.js"></script>
+	<script type="text/javascript" src="rise_set.js"></script>
+
+
+	<!--script for connecting with google maps service and access to librariesraries -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDizdhb4UZeCUTnjxYnxNt_TS62IFj2SGg&callback=load&libraries=geometry,weather"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js" >
+        </script>
+
+
+</head>
+
+<body>
+  <div id="title">
+    <h3 id="header">Switchback Trail Finder</h3>
+  </div>
+
+    <div id="nav">
+    <h4 class='inline'>
+        <button type="button" data-toggle="collapse" data-target="#menu" onclick="this.innerHTML = (this.innerHTML == '+  Trails' ? '-  Trails' : '+  Trails');">+  Trails</button>
+    </h4>
+
+
+		<!--Block for buttons inside the bootstrap menu -->
+       <div id="menu" class="collapse">
+        <form class="form-horizontal" id="calculate-route" name="calculate-route">
+			<fieldset>
+				<button id="lostman" type="button">Lost Man Trail</button>
+				<br/>
+				<button id="klopp" type="button">Klopp Lake</button>
+				<br/>
+				<button id="hikshari" type="button">Hikshari Trail</button>
+				<br/>
+				<button id="redwoodPark" type="button">Redwood Park</button>
+				<br/>
+				<button id="brackishPond" type="button">Brackish Pond</button>
+        <br/>
+        <button id="strawberryRock" type="button">Strawberry Rock</button>
+			</fieldset>
+        </form>
+       </div>
+      </div>
+
+      <!-- THIS IS FOR THE HELP WINDOW -->
+      <div id="help">
+        <h4 class="inline">
+          <button id="helper" type="button" data-toggle="collapse" data-target="#help1" onclick="this.innerHTML = (this.innerHTML == '+  Help' ? '-  Help' : '+  Help');">+  Help</button>
+        </h4>
+        <div id="help1" class="collapse">
+          <p id="helppara"> <strong>Welcome to Switchback Trail Finder!</strong></br></br>
+            On the left-hand side of the menu bar is</br>
+            the trail button.  This will allow you to</br>
+            select a trail to view on our map.  To get</br>
+            more information on a certain trail, click</br>
+            on the pin at the start of that trail.  Each</br>
+            trail pin will display the name of the trail,</br>
+            a short description, the trail length in</br>
+            miles, the sunrise and sunset times, the</br>
+            weather, and the wind speed.</p>
+          </div>
+        </div>
+
+	<!--Div for the map object -->
+    <div id="map"></div>
+
+
+    <p id = demo1></p>
+    <p id = demo2></p>
+    <p id = demo3></p>
+
+</body>
+
+</html>

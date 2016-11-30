@@ -150,22 +150,22 @@ function load() {
 
 
 	//String information for trail infowindow
-	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
+	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var lostManContString =  '<h2>Lost Man Trail</h2>'+ '<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
+	var lostManContString =  '<h2>Lost Man Trail</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + lmc_ar[0] + '</p>' + '<p>Sunset: ' + lmc_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var hikshariContString = '<h2>Hikshari Trail</h2>'+ '<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
+	var hikshariContString = '<h2>Hikshari Trail</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + ht_ar[0] + '</p>' + '<p>Sunset: ' + ht_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var redwoodParkContString = '<h2>Redwood Park</h2>' + '<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
+	var redwoodParkContString = '<h2>Redwood Park</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var brackishPondContString = '<h2>Brackish Pond</h2>' + '<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
+	var brackishPondContString = '<h2>Brackish Pond</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>'
 	                                        + '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
-	var strawberryRockString = '<h2>Strawberry Rock</h2>' + '<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
+	var strawberryRockString = '<h2>Strawberry Rock</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + sr_ar[0] + '</p>' + '<p>Sunset: ' + sr_ar[1] + '</p>'
 																					+ '<p>Temperature: ' + temp + '</p>' + '<p>Wind Speed: ' + wind + '</p>';
 
@@ -193,22 +193,32 @@ function load() {
 	//creates on click listener for the infowindow for each trail marker
 	kloppMarker.addListener('click', function(){
 		kloppInfo.open(map, kloppMarker);
+		loadWeather('40.855544, -124.095873');
+
 	});
 	lostManMarker.addListener('click', function(){
 		lostManInfo.open(map, lostManMarker);
+		loadWeather(lostManStart.lat.toString() + ',' + lostManStart.lng.toString());loadWeather(lostManStart.lat.toString() + ',' + lostManStart.lng.toString());
 	});
 
 	hikshariMarker.addListener('click', function(){
 		hikshariInfo.open(map, hikshariMarker);
+		loadWeather(lostManStart.lat.toString() + ',' + lostManStart.lng.toString());
 	});
 	redwoodParkMarker.addListener('click', function(){
 		redwoodParkInfo.open(map, redwoodParkMarker);
+		loadWeather(redwoodParkStart.lat.toString() + ',' +redwoodParkStart.lng.toString());
+
 	});
 	brackishPondMarker.addListener('click', function(){
 		brackishPondInfo.open(map, brackishPondMarker);
+		loadWeather(brackishPondStart.lat.toString()+ ',' +  brackishPondStart.lng.toString());
+
 	});
 	strawberryRockMarker.addListener('click', function(){
 		strawberryRockInfo.open(map, strawberryRockMarker);
+		loadWeather(strawberryRockStart.lat.toString()+ ',' +  strawberryRockStart.lng.toString());
+
 	});
 
 
@@ -237,7 +247,47 @@ function load() {
 	tester.addEventListener('click',function(){
 		map.setCenter(strawberryRockStart);});
 
-	var infoWindow = new google.maps.InfoWindow;
+		var html = "<table>" +
+							 "<tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>" +
+							 "<tr><td>Description:</td> <td><input type='text' id='description'/></td> </tr>" +
+							 "<tr><td></td><td><input type='button' value='Save & Close' onclick='saveData()'/></td></tr>";
+	 infowindow = new google.maps.InfoWindow({
+	 content: html
+	});
+
+	var infowindow1 = new google.maps.InfoWindow;
+
+	google.maps.event.addListener(map, "click", function(event) {
+			marker = new google.maps.Marker({
+				position: event.latLng,
+				map: map
+			});
+
+			google.maps.event.addListener(marker, "click", function() {
+				infowindow.open(map, marker);
+			});
+	});
+
+
+	// Change this depending on the name of your PHP file
+	downloadUrl1("output.php", function(data) {
+		var xml = data.responseXML;
+		var markers = xml.documentElement.getElementsByTagName("marker");
+		for (var i = 0; i < markers.length; i++) {
+			var name = markers[i].getAttribute("name");
+			var address = markers[i].getAttribute("description");
+			var point = new google.maps.LatLng(
+					parseFloat(markers[i].getAttribute("lat")),
+					parseFloat(markers[i].getAttribute("lng")));
+			var html1 = "<b>" + name + "</b> <br/>" + address;
+			var marker = new google.maps.Marker({
+				map: map,
+				position: point,
+			});
+			bindInfoWindow(marker, map, infowindow1, html1);
+		}
+	});
+
 
 
 };
