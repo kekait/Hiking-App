@@ -1,3 +1,0 @@
-As an avid hiker there are a few rules that msut be followed. Distance and ambient\
- temperature are significant factors to be considered when designing a hike. I wou\
-ld think it would be important to include these details withing the application.
