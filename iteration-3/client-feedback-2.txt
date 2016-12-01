@@ -1,0 +1,4 @@
+The application fufilled both the need to know how long the hike would be within t\
+he local Arcata area, it also included the terrestrial terrain and temperature. A \
+positive aspect of this web application would be that it includes an image of the \
+hike and the safety characteristic one would want when curious about a hike.
