@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="bootstrap-responsive.css">
 
 	<!--Block for referencing js script files -->
-	<script type="text/javascript" src="trail_variables.js"></script>
-	<script type="text/javascript" src="trailNotes.js"></script>
-	<script type="text/javascript" src="weather.js"></script>
-	<script type="text/javascript" src="map.js"></script>
-	<script type="text/javascript" src="rise_set.js"></script>
+    <script type="text/javascript" src="trail_variables.js"></script>
+    <script type="text/javascript" src="trailNotes.js"></script>
+    <script type="text/javascript" src="weather.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="rise_set.js"></script>
 
 
 	<!--script for connecting with google maps service and access to librariesraries -->
