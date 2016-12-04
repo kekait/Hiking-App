@@ -50,16 +50,16 @@
        <div id="menu" class="collapse">
         <form class="form-horizontal" id="calculate-route" name="calculate-route">
 			<fieldset>
-				<button id="lostman" type="button">Lost Man Trail</button>
-				<br/>
-				<button id="klopp" type="button">Klopp Lake</button>
-				<br/>
-				<button id="hikshari" type="button">Hikshari Trail</button>
-				<br/>
-				<button id="redwoodPark" type="button">Redwood Park</button>
-				<br/>
-				<button id="brackishPond" type="button">Brackish Pond</button>
+        <button id="brackishPond" type="button">Brackish Pond</button>
         <br/>
+        <button id="hikshari" type="button">Hikshari Trail</button>
+				<br/>
+        <button id="klopp" type="button">Klopp Lake</button>
+				<br/>
+        <button id="lostman" type="button">Lost Man Trail</button>
+				<br/>
+        <button id="redwoodPark" type="button">Redwood Park</button>
+				<br/>
         <button id="strawberryRock" type="button">Strawberry Rock</button>
 			</fieldset>
         </form>
