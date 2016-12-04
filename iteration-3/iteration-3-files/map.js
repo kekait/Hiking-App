@@ -137,23 +137,46 @@ function load() {
 	var bp_ar = sunrise_set(brackishPondStart.lat,brackishPondStart.lng);
 	var sr_ar = sunrise_set(strawberryRockStart.lat,strawberryRockStart.lng);
 
+	//descriptions of the trails
+	var kloppDesc =
+		'<p>Klopp Lake is a small lake located just outside of Arcata, near the</br>' +
+		'Redwood Curtain Brewing Company.  The lake has three islands within it,</br>' +
+		'West Island of Klopp Lake, Middle Island of Klopp Lake, and East Island</br>' +
+		'of Klopp Lake.</p>';
+	var lostManDesc =
+		'<p>The Lost Man Trail is located in Orick, CA.  The trail follows the Lost</br>' +
+		'Man Creek though dense forest.</p>';
+	var hikshariDesc =
+		'<p>The Hikshari Trail starts on the south side of Eureka and ends behind</br>' +
+		'the Bayshore Mall.  The trail parallels the North Bay Channel.</p>';
+	var redwoodParkDesc =
+		'<p>Redwood Park is located just outside Humboldt State University and passes</br>' +
+		'over the Gannon Slough.  Along the trail is the Redwood Lodge which is a small </br>' +
+		'gathering facility.</p>';
+	var brackishPondDesc =
+		'<p>Brackish Pond is located just south of Arcata and contains old railroad</br>' +
+		'tracks around it.  Surrounding the pond are more, smaller ponds.</p>';
+	var strawberryRockDesc =
+		'<p>The Strawberry Rock Trail is located just outside of Trinidad.  The</br>' +
+		'trail ends at a large rock that over looks the ocean and the surrounding</br>' +
+		'forest.</p>';
 
 	//String information for trail infowindow
-	var kloppContString = 	'<h2>Klopp Lake</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
+	var kloppContString = 	'<h2>Klopp Lake</h2>' + kloppDesc + '<div id="weather"></div>'+'<p>Trail length: ' + kloppDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + kl_ar[0] + '</p>' + '<p>Sunset: ' + kl_ar[1] + '</p>';
-	var lostManContString =  '<h2>Lost Man Trail</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
+	var lostManContString =  '<h2>Lost Man Trail</h2>' + lostManDesc + '<div id="weather"></div>'+'<p>Trail length: ' + lostManDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + lmc_ar[0] + '</p>' + '<p>Sunset: ' + lmc_ar[1] + '</p>';
-	var hikshariContString = '<h2>Hikshari Trail</h2>'+ '<div id="weather"></div>'+'<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
+	var hikshariContString = '<h2>Hikshari Trail</h2>' + hikshariDesc + '<div id="weather"></div>'+'<p>Trail length: ' + hikshariDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + ht_ar[0] + '</p>' + '<p>Sunset: ' + ht_ar[1] + '</p>';
-	var redwoodParkContString = '<h2>Redwood Park</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
+	var redwoodParkContString = '<h2>Redwood Park</h2>' + redwoodParkDesc + '<div id="weather"></div>'+'<p>Trail length: ' + redwoodParkDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + rp_ar[0] + '</p>' + '<p>Sunset: ' + rp_ar[1] + '</p>';
-	var brackishPondContString = '<h2>Brackish Pond</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
+	var brackishPondContString = '<h2>Brackish Pond</h2>' + brackishPondDesc + '<div id="weather"></div>'+'<p>Trail length: ' + brackishPondDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + bp_ar[0] + '</p>' + '<p>Sunset: ' + bp_ar[1] + '</p>';
-	var strawberryRockString = '<h2>Strawberry Rock</h2>' + '<div id="weather"></div>'+'<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
+	var strawberryRockString = '<h2>Strawberry Rock</h2>' + strawberryRockDesc + '<div id="weather"></div>'+'<p>Trail length: ' + strawberryRockDistance.toFixed(2) + 'mi</p>'
 						+ '<p>Sunrise: ' + sr_ar[0] + '</p>' + '<p>Sunset: ' + sr_ar[1] + '</p>';
 
-						
-			
+
+
 	//creates infowindow when marker is clicked for each trail
 	var kloppInfo = new google.maps.InfoWindow({
 		content: kloppContString
@@ -174,9 +197,9 @@ function load() {
 		content: strawberryRockString
 	});
 	//DummyWindow so only one infowindow will be open at any time
-	
+
 	var lastWindow = new google.maps.InfoWindow({
-	});		
+	});
 
 
 	//creates on click listener for the infowindow for each trail marker
@@ -218,7 +241,7 @@ function load() {
 		loadWeather(strawberryRockStart.lat.toString()+ ',' +  strawberryRockStart.lng.toString());
 		lastWindow = strawberryRockInfo;
 	});
-	
+
 
 
 	//On click listeners for buttons in the bootstrap menu
@@ -246,13 +269,13 @@ function load() {
 	tester.addEventListener('click',function(){
 		map.setCenter(strawberryRockStart);});
 
-		
-		
+
+
 	var html = "<table>" +
 						 "<tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>" +
 						 "<tr><td>Description:</td> <td><input type='text' id='description'/></td> </tr>" +
 						 "<tr><td></td><td><input type='button' value='Save & Close' onclick='saveData()'/></td></tr>";
-	
+
 	infowindow = new google.maps.InfoWindow({
 	 content: html
 	});
@@ -270,7 +293,7 @@ function load() {
 	});
 
 
-	
+
 	// Change this depending on the name of your PHP file
 	downloadUrl1("output.php", function(data) {
 		var xml = data.responseXML;
