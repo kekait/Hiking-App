@@ -31,8 +31,11 @@
 </head>
 
 <body>
+<div id="top"></div>
   <div id="title">
     <h3 id="header">Switchback Trail Finder</h3>
+  </div>
+  <div id="search">
     <input id="pac-input" class="controls" type="text" placeholder="Search
  Box">
   </div>
