@@ -270,23 +270,28 @@ function load() {
 		map.setCenter(strawberryRockStart);});
 
 
-
+	// Input fields for user to enter trail notes to save to database
 	var html = "<table>" +
 						 "<tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>" +
 						 "<tr><td>Description:</td> <td><input type='text' id='description'/></td> </tr>" +
 						 "<tr><td></td><td><input type='button' value='Save & Close' onclick='saveData()'/></td></tr>";
-
+	// infowindow object with contents set from variable html
 	infowindow = new google.maps.InfoWindow({
 	 content: html
 	});
+	
 	var infowindow1 = new google.maps.InfoWindow;
-
+	/* when user clicks on map marker is set to lat/lng of the click.
+ 	   The marker is created with a event listener where if a user clicks
+	   on it the infowindow with the html content opens.
+	*/
+	
 	google.maps.event.addListener(map, "click", function(event) {
 			marker = new google.maps.Marker({
 				position: event.latLng,
 				map: map
 			});
-
+			
 			google.maps.event.addListener(marker, "click", function() {
 				infowindow.open(map, marker);
 			});
@@ -294,7 +299,12 @@ function load() {
 
 
 
-	// Change this depending on the name of your PHP file
+	/* calls the downloadUrl1 function in trailnotes.js which uses ajax
+	   to run output.php which creates an xml document with the results
+	   of all the trail notes saved in the database. The callback function
+	   runs through all the results and creates markers with their corresponding
+	   description.
+	*/
 	downloadUrl1("output.php", function(data) {
 		var xml = data.responseXML;
 		var markers = xml.documentElement.getElementsByTagName("marker");
