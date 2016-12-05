@@ -14,6 +14,7 @@ $string = 'select * from markers';
 $stmt = oci_parse($conn, $string);
 oci_execute($stmt, OCI_DEFAULT);
 
+// Creates children of parrent node "markers" with query results
 while(oci_fetch($stmt))
 {
  
