@@ -11,8 +11,8 @@ For this diagram we have Client, Application, Server, and Database components.
 
 2) Application is connected to the Server via http, and vice versa.
 
-3) Finally, the Server is connected to the Database via our Oracle through the campus, and relays information back to the
-   user.
+3) Finally, the Server is connected to the Database via our Oracle access through the campus, and relays information back
+   to the user.
 
 
 Our diagram is relatively simple, because we are only gathering information from Google, like our Maps API information, and
