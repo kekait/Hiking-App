@@ -1,12 +1,25 @@
 Team_ISAK's UML diagram README.txt
 
-In this diagram we have Actor, Login, Database, and Webpage components.
+In this diagram we have Homepage, Help, Login, Find Trail, Trail notes, available trails, search trails, and trail found
+components.
 
-1) Any users, 0...n, can attempt to log into the website
-2) Once logged in, 2 things happen:
-   a) the user can now access the webpage
-   b) the user, with the correct account, can access the Oracle database hosted by HSU
-3) The webpage can only have the person who is logged in to view their unique site associated with their own
-   Oracle database
-4) The person who is currently logged in can add data to the database, which is relayed and displayed as a marker
-   on their unique webpage
+1) Users make it to the home page where it sets up three actions:
+   a) help
+   b) login
+   c) find trail
+
+2) Help can be opened or closed on homepage
+
+3) Loging in can lead to accessing the database to write trail notes
+
+4) Going to find trails leads to two actions:
+   a) Available trails
+   b) Search Trails
+
+5) Available trails is accessed through the trails icon
+
+6) Search trails can be access through the search box
+
+7) Available trails and Search trails lead to completing an aciton
+
+8) This leads to trail found, which is the final action in the UML
