@@ -84,15 +84,22 @@
             weather, and the wind speed.</p>
           </div>
         </div>
+		
+	   <div id="login">
+        <h4 class="inline">
+          <button id="loginer" type="button" onclick="document.location.href = 'login.php'">+ Login</button>
+        </h4>
+       </div>
 
 	<!--Div for the map object -->
     <div id="map"></div>
 
-
+<!--
+	for testing function correctness
     <p id = demo1></p>
     <p id = demo2></p>
     <p id = demo3></p>
-
+-->
 </body>
 
 </html>

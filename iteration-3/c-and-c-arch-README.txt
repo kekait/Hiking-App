@@ -2,18 +2,17 @@ Team_ISAK's c-and-c-arch diagram
 
 README:
 
-For our project we created a website for people to use, which connects to a database to gather information that the user can
-input and log into.
+For our project we created a website for people to use, which connects to a a number of applications to gather various amounts of
+different information.
 
-For this diagram we have Client, Application, Server, and Database components.
+For this diagram we have Client, application, and database components
 
-1) Client is connected to the Application via http, and vice versa.
+1) Client requests information from 3 different application servers for various information
 
-2) Application is connected to the Server via http, and vice versa.
+	a)Request to google supplies the user with the map data and access to a number of its included methods
+	b)Request to simpleWeather supplies the user with weather information.
+	c)Request to NRS-projects is made in preparation to connect with the Oracle database to send/recieve information that
+		pertains to the map (EX: trail notes)
 
-3) Finally, the Server is connected to the Database via our Oracle access through the campus, and relays information back
-   to the user.
-
-
-Our diagram is relatively simple, because we are only gathering information from Google, like our Maps API information, and
+Our diagram is relatively simple, because we are only gathering information from Google and SimpleWeather, like our Maps API information, and
 logging in to the Oracle database on campus for user input collection and web hosting. 
